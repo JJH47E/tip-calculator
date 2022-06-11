@@ -65,7 +65,7 @@ function App() {
             {currencies.map(currency => <CurrencyOption currency={currency} />)}
           </div>
           <div className="total">
-            <p>Total: {getCurrency()}</p><input ref={inputRef} className="main-input" inputMode="decimal" id="totalInput" onKeyPress={(event) => {
+            <p>Total: {getCurrency()}</p><input ref={inputRef} className="main-input" inputMode="decimal" placeholder={"0.00"} id="totalInput" onKeyPress={(event) => {
           if (!/[0-9]|[.]/.test(event.key)) {
             event.preventDefault();
           }
