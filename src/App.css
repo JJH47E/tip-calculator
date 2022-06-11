@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+
+.App {
+  text-align: center;
+  font-family: 'Courier Prime', monospace;
+}
+
+.App-header {
+  background-color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: black;
+}
+
+.content {
+  width: 40vw;
+}
+
+.total {
+  width: 100%;
+}
+
+.total * {
+  display: inline;
+  height: 5vh;
+  font-size: 5vh;
+}
+
+.options {
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  min-width: 100%;
+}
+
+.main-input {
+  font-family: inherit;
+  width: 50%;
+  border: none;
+  box-shadow: 0 0 1px black;
+}
+
+.addition {
+  padding-top: 30px;
+}
+
+.addition * {
+  font-size: 5vh;
+}
+
+.addition-property {
+  display: block;
+  width: 100%;
+  text-align: end;
+}
+
+.addition-property hr {
+  border-top: 1px solid black;
+}
