@@ -1,11 +1,16 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
+import CurrencyOption from './currency-option/currency-option.component';
+import { curr, getCurrency } from './services/currency.service';
 import TipOption from './tip-option/tip-option.component';
 import VerticalAddition from './vertical-addition/vertical-addition.component';
 
 const options = [12.5, 15, 17.5, 20, 22.5];
+const currencies = ['$', '£', '€'];
 
 function App() {
+  curr();
+  
   const [tipAmount, setTipAmount] = useState(17.5);
   const [billAmount, setBillAmount] = useState(0);
 
@@ -48,8 +53,11 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div className="content">
+          <div className="currencies">
+            {currencies.map(currency => <CurrencyOption currency={currency} />)}
+          </div>
           <div className="total">
-            <p>Total: </p><input ref={inputRef} className="main-input" id="totalInput" onKeyPress={(event) => {
+            <p>Total: {getCurrency()}</p><input ref={inputRef} className="main-input" id="totalInput" onKeyPress={(event) => {
           if (!/[0-9]|[.]/.test(event.key)) {
             event.preventDefault();
           }
@@ -63,7 +71,7 @@ function App() {
             {options.map(opt => <TipOption amount={opt} options={options.length} applyTip={applyTip} />)}
           </div>
           <div className="addition">
-            <VerticalAddition bill={billAmount} tip={tipAmount} />
+            <VerticalAddition bill={billAmount} tip={tipAmount} currency={getCurrency()}/>
           </div>
         </div>
       </header>

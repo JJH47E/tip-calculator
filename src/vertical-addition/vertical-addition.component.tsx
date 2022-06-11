@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../App.css';
 
 interface VerticalAdditionProps
 {
     bill: number;
     tip: number;
+    currency: string;
 }
 
-function VerticalAddition({bill, tip}: VerticalAdditionProps) {
+function VerticalAddition({bill, tip, currency}: VerticalAdditionProps) {
     let rawTip = parseFloat((bill * (tip/100)).toString()).toFixed(2);
     let rawBill = parseFloat(bill.toString()).toFixed(2);
     return (
         <>
             <div className="addition-property">
-                {rawBill}
+                {currency}{rawBill}
             </div>
             <div className="addition-property">
                 +&#160;{tip}%
@@ -22,10 +23,10 @@ function VerticalAddition({bill, tip}: VerticalAdditionProps) {
                 <hr />
             </div>
             <div className="addition-property">
-                Tip: {rawTip}
+                Tip: {currency}{rawTip}
             </div>
             <div className="addition-property">
-                Total: {parseFloat((parseFloat(rawTip) + parseFloat(rawBill)).toString()).toFixed(2)}
+                Total: {currency}{parseFloat((parseFloat(rawTip) + parseFloat(rawBill)).toString()).toFixed(2)}
             </div>
         </>
     );

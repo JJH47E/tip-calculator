@@ -30,11 +30,28 @@
   font-size: 5vh;
 }
 
+.currencies {
+  padding-top: 0;
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 100%;
+}
+
+.currencies * {
+  cursor: pointer;
+}
+
 .options {
   padding-top: 30px;
   display: flex;
   justify-content: space-between;
   min-width: 100%;
+}
+
+.options * {
+  font-size: 4vh;
+  cursor: pointer;
 }
 
 .main-input {
@@ -45,7 +62,7 @@
 }
 
 .addition {
-  padding-top: 30px;
+  padding-top: 50px;
 }
 
 .addition * {
