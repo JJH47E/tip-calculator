@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react';
-import './App.css';
+import './App.scss';
 import CurrencyOption from './currency-option/currency-option.component';
 import { curr, getCurrency } from './services/currency.service';
+import { getTip, setTip, tipService } from './services/tip.service';
 import TipOption from './tip-option/tip-option.component';
 import VerticalAddition from './vertical-addition/vertical-addition.component';
 
@@ -10,17 +11,21 @@ const currencies = ['$', '£', '€'];
 
 function App() {
   curr();
+  tipService();
   
-  const [tipAmount, setTipAmount] = useState(17.5);
   const [billAmount, setBillAmount] = useState(0);
 
   var inputRef = useRef(null);
 
   const applyTip = (amount: number) => {
-    setTipAmount(amount);
+    setTip(amount);
   };
 
   const updateBillAmount = (total: string) => {
+    if (isNaN(Number(total))) {
+      setBillAmount(0);
+      return;
+    }
     setBillAmount(Number(total));
   }
 
@@ -29,17 +34,20 @@ function App() {
       if (/[.]/.test(key)) {
         return false;
       }
+      return true;
     }
     let num = Number(ref.current.value)
     if (isNaN(num)) {
       return false
     }
+    if (num >= 10000) {
+      return false;
+    }
     if (num % 1 === 0) {
       // whole number
       return true;
     }
-    else if ((num * 10) % 1 != 0) {
-      // value is getting its last dp
+    else if (ref.current.value.split('.')[1].length === 2) {
       return false;
     }
     else if (/[.]/.test(key)) {
@@ -57,7 +65,7 @@ function App() {
             {currencies.map(currency => <CurrencyOption currency={currency} />)}
           </div>
           <div className="total">
-            <p>Total: {getCurrency()}</p><input ref={inputRef} className="main-input" id="totalInput" onKeyPress={(event) => {
+            <p>Total: {getCurrency()}</p><input ref={inputRef} className="main-input" inputMode="decimal" id="totalInput" onKeyPress={(event) => {
           if (!/[0-9]|[.]/.test(event.key)) {
             event.preventDefault();
           }
@@ -71,7 +79,7 @@ function App() {
             {options.map(opt => <TipOption amount={opt} options={options.length} applyTip={applyTip} />)}
           </div>
           <div className="addition">
-            <VerticalAddition bill={billAmount} tip={tipAmount} currency={getCurrency()}/>
+            <VerticalAddition bill={billAmount} tip={getTip()} currency={getCurrency()}/>
           </div>
         </div>
       </header>

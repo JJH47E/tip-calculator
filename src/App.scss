@@ -1,8 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+@import 'include-media';
+@import 'variables';
+
+$breakpoints: (phone: 570px, tablet: 768px, desktop: 1024px);
+
+input {
+  -webkit-border-radius:0; 
+  border-radius:0;
+}
 
 .App {
   text-align: center;
   font-family: 'Courier Prime', monospace;
+  height: 100vh;
 }
 
 .App-header {
@@ -17,7 +27,12 @@
 }
 
 .content {
-  width: 40vw;
+  @include media("<=tablet") {
+    width: $portraitContentWidthMobile;
+  }
+  @include media(">tablet") {
+    width: $portraitContentWidthDesktop;
+  }
 }
 
 .total {
@@ -26,8 +41,19 @@
 
 .total * {
   display: inline;
-  height: 5vh;
-  font-size: 5vh;
+  justify-content: space-between;
+  height: min(5vw, 5vh);
+  font-size: min(5vw, 5vh);
+}
+
+.main-input {
+  font-family: inherit;
+  border: 0 0 1px black;
+  width: 40%;
+}
+
+*:focus {
+  outline: none;
 }
 
 .currencies {
@@ -36,6 +62,7 @@
   display: flex;
   justify-content: space-evenly;
   min-width: 100%;
+  font-size: calc(10px + 3vmin);
 }
 
 .currencies * {
@@ -50,15 +77,9 @@
 }
 
 .options * {
-  font-size: 4vh;
+  font-size: auto;
+  padding: 5px;
   cursor: pointer;
-}
-
-.main-input {
-  font-family: inherit;
-  width: 50%;
-  border: none;
-  box-shadow: 0 0 1px black;
 }
 
 .addition {

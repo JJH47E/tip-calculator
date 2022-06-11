@@ -1,5 +1,6 @@
 import React from 'react';
-import '../App.css';
+import '../App.scss';
+import { getTip } from '../services/tip.service';
 
 interface TipOptionProps
 {
@@ -10,7 +11,8 @@ interface TipOptionProps
 
 function TipOption({amount, options, applyTip}: TipOptionProps) {
     return (
-        <div key={amount} onClick={() => applyTip(amount)}>
+        <div key={amount} onClick={() => applyTip(amount)} style={amount === getTip() ? 
+            {textDecoration: 'underline'} : {}}>
             {amount}%
         </div>
     );
