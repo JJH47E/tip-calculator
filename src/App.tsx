@@ -43,11 +43,11 @@ function App() {
     if (num >= 10000) {
       return false;
     }
-    if (num % 1 === 0) {
+    if ((num % 1 === 0 && num !== 0) || !(ref.current.value.includes('.') && (ref.current.value.split('.')[1].length >= 2))) {
       // whole number
       return true;
     }
-    else if (ref.current.value.split('.')[1].length === 2) {
+    else if (ref.current.value.split('.')[1].length >= 2) {
       return false;
     }
     else if (/[.]/.test(key)) {

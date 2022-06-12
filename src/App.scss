@@ -46,10 +46,17 @@ input {
   font-size: min(5vw, 5vh);
 }
 
+.total p {
+  width: 50%;
+}
+
 .main-input {
   font-family: inherit;
-  border: 0 0 1px black;
-  width: 40%;
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: black;
+  border-style: dashed;
+  width: 50%;
 }
 
 *:focus {
